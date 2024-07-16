@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class FarmService {
@@ -19,7 +18,7 @@ public class FarmService {
     public List<Farm> getAllFarmsWithoutFarmers() {
         return farmRepo.findAll().stream()
                 .filter(farm -> farm.getFarmers().isEmpty())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Farmer> getFarmFarmers(Integer id) {
