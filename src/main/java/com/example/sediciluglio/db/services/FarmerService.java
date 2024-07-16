@@ -19,7 +19,7 @@ public class FarmerService {
     @Autowired
     private FarmRepo farmRepo;
 
-    public Farmer create(FarmerDto farmerDto) {
+    public Farmer add(FarmerDto farmerDto) {
         Optional<Farm> farmOptional = farmRepo.findById(farmerDto.getFarmId());
         if (farmOptional.isEmpty()) {
             throw new IllegalArgumentException("Farm with id: " + farmerDto.getFarmId() + " was not found");

@@ -21,7 +21,7 @@ public class FarmController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getAllFarmFarmers(@PathVariable Integer id) {
         try {
-            return ResponseEntity.ok(farmService.getFarmFarmers(id));
+            return ResponseEntity.ok(farmService.getFarmers(id));
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
@@ -30,7 +30,7 @@ public class FarmController {
     @PostMapping("")
     public ResponseEntity<?> addFarm(@RequestBody Farm farm) {
         try {
-            return ResponseEntity.ok(farmService.addFarm(farm));
+            return ResponseEntity.ok(farmService.add(farm));
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class FarmController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFarm(@PathVariable Integer id, @RequestBody Farm updatedFarm) {
         try {
-            return ResponseEntity.ok(farmService.updateFarm(id, updatedFarm));
+            return ResponseEntity.ok(farmService.update(id, updatedFarm));
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());
         }

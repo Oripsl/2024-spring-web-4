@@ -21,7 +21,7 @@ public class FarmService {
                 .toList();
     }
 
-    public List<Farmer> getFarmFarmers(Integer id) {
+    public List<Farmer> getFarmers(Integer id) {
         if (id == null) {
             throw new IllegalArgumentException("Id cannot be null");
         }
@@ -34,7 +34,7 @@ public class FarmService {
         return optionalFarm.get().getFarmers();
     }
 
-    public Farm addFarm(Farm farm) {
+    public Farm add(Farm farm) {
         if (farm == null) {
             throw new IllegalArgumentException("Farm cannot be null");
         }
@@ -42,7 +42,7 @@ public class FarmService {
         return farmRepo.save(farm);
     }
 
-    public Farm updateFarm(Integer id, Farm updatedFarm) {
+    public Farm update(Integer id, Farm updatedFarm) {
         if (id == null) {
             throw new IllegalArgumentException("Id cannot be null");
         }

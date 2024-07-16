@@ -24,7 +24,7 @@ public class FarmerController {
     @PostMapping("/addFakeFarmers")
     public void addFakeFarmers() {
         Farm farm = new Farm("Carlo", "Alberto");
-        farmService.addFarm(farm);
+        farmService.add(farm);
 
         FarmerDto farmer1 = new FarmerDto();
         farmer1.setName("John");
@@ -44,9 +44,9 @@ public class FarmerController {
         farmer3.setAge(40);
         farmer3.setFarmId(farm.getId());
 
-        farmerService.create(farmer1);
-        farmerService.create(farmer2);
-        farmerService.create(farmer3);
+        farmerService.add(farmer1);
+        farmerService.add(farmer2);
+        farmerService.add(farmer3);
     }
 
     @GetMapping("/{id}")
@@ -67,7 +67,7 @@ public class FarmerController {
     @PostMapping("")
     private ResponseEntity<?> create(@RequestBody FarmerDto farmerDto) {
         try {
-            Farmer farmer = farmerService.create(farmerDto);
+            Farmer farmer = farmerService.add(farmerDto);
             return ResponseEntity.ok(farmer);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(400).body(e.getMessage());
