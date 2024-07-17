@@ -22,7 +22,7 @@ public class FarmerController {
 
 
     @PostMapping("/addFakeFarmers")
-    public void addFakeFarmers() {
+    public ResponseEntity<Void> addFakeFarmers() {
         Farm farm = new Farm("Carlo", "Alberto");
         farmService.add(farm);
 
@@ -47,15 +47,17 @@ public class FarmerController {
         farmerService.add(farmer1);
         farmerService.add(farmer2);
         farmerService.add(farmer3);
+
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<?> getById(@PathVariable Integer id) {
+    private ResponseEntity<Farmer> getById(@PathVariable Integer id) {
         try {
             Farmer farmer = farmerService.getById(id);
             return ResponseEntity.ok(farmer);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -65,22 +67,22 @@ public class FarmerController {
     }
 
     @PostMapping("")
-    private ResponseEntity<?> create(@RequestBody FarmerDto farmerDto) {
+    private ResponseEntity<Farmer> create(@RequestBody FarmerDto farmerDto) {
         try {
             Farmer farmer = farmerService.add(farmerDto);
             return ResponseEntity.ok(farmer);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<?> update(@RequestBody FarmerDto farmerDto, @PathVariable Integer id) {
+    private ResponseEntity<Farmer> update(@RequestBody FarmerDto farmerDto, @PathVariable Integer id) {
         try {
             Farmer farmer = farmerService.update(id, farmerDto);
             return ResponseEntity.ok(farmer);
         } catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.badRequest().build();
         }
     }
 
